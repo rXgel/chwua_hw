@@ -51,7 +51,7 @@
    
    void main(...args){
 	String greeting = "Hello"; 
-	stringy(greeting);
+	stringfy(greeting);
 	Sysout(greeting); // Output will be Hello
    }
 
@@ -60,7 +60,7 @@
 4. First, initialize a git directory on my local hard disk using "git init"
    Second, add convenience files such as README.md for commit.
    Thrid, Do the first commit with the message "-m" flage option. 
-   Third, renaming the default branch "master" ( b4 year 2010) to "main"(as you wish, cuz uon wannna be a racist), such as "git branch -M main".
+   Optional: renaming the default branch "master" ( b4 year 2010) to "main"(as you wish, cuz uon wannna be a racist), such as "git branch -M main".
 
 
 @Question: How to clone a existing git repos from GitHub?
@@ -75,7 +75,7 @@
 Note: Checking out a branch updates the files in the working directory to match the version stored in that branch,
       and it tells Git to record all new commits on that branch.
 
-add->commit->checkout->push"
+add->commit->(checkout->)->push"
 
 
 @Question: How to merge the new branch to master branch?
