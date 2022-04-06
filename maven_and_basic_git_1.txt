@@ -30,7 +30,7 @@
 	mvn deploy: Self-explainatary. (to remote)
 
 	Some useful arg flags: -X (runs in debug mode for detailed build info and logs. e.g. mvn -X install 
-			       -Dskip (skips running tests. e.g. mvn install -DskipTests)
+			       -DskipTest (skips running tests. e.g. mvn install -DskipTests)
 
 	Some useful combo: mvn clean package/install
 
