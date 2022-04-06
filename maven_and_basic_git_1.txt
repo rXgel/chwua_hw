@@ -1,0 +1,102 @@
+@Question: What's the maven role? what's it used for?  
+1. Maven's role is building java project, its known for adding dependencies with specified versions by simply adding into pom.xml.
+   It's used as a local(sharing with all local projects)/remote central repositary for sharing it with other developers.                          
+   Replacement of Ant, despite Ant is probly more flexible.
+
+
+@Question: What's the life cycle of maven? More Details?
+2. The maven life cycle contains 8 major steps, for compiling, testing, building, and installing the project being built. More details in below:
+	1. Validation: validates the project structure, e.g. Checks if all dependencies are downloaded into the local .m2 repos.
+	2. Compilation: compiles the Java source code to intermediate bytecode, then stores these class files to /target/class folder.
+	3. Unit Testing: It runs unit tests in the project test package.
+	4. Packaging: It packages all cmopiled classes into a distributable format such as Jar(Java ARchive) or War (Web).
+	5. Integrating Test: Performs the test for maintaining integration.
+	6. Verification:  Runs checks again to verify that project is valid as if met the quality standard.
+	7. Installation: Installs the packaged jar into local repos, ready for deployment. 
+	8. Deployment: Deploys the jar to remote repos, in order to be shared with developers worldwide. 
+
+    Note: all preceding steps will be executed in the natural order before an arbitrary step is performed. 
+    Note: here is no lifecycle command to do that. However, you can configure a plugin in your POM, 
+	  which will be bound to a certain phase, and invoke that phase.
+
+	Some useful mvn commands: 
+
+	mvn clean : clean the project by removing all the prev built files in local repos.
+	mvn compile: Self-explainatary.
+	mvn test-compile: compiles the test src code.
+	mvn test: runs tests (locates in the test package).
+	mvn package: Self-explainatary(JAR/WAR).
+	mvn install: Self-explainatary. (to /.m2/)
+	mvn deploy: Self-explainatary. (to remote)
+
+	Some useful arg flags: -X (runs in debug mode for detailed build info and logs. e.g. mvn -X install 
+			       -Dskip (skips running tests. e.g. mvn install -DskipTests)
+
+	Some useful combo: mvn clean package/install
+
+
+@Question Passing by value vs reference? Provide code snippet examples
+3. Java lang is always passed by value, which the value could be either the copy of bit address of the Heap objects held by an object-handler 
+   called reference (which always resides on the left side of "=" expression), or the actaul value of the primitive types passed(copied) to
+   the variable. 
+   Note: C++ and PHP are only langs passed by reference.
+
+   A special-case Code Example:
+
+   // String is an immutable object. So the local param "input" (which is a reference to "greeting") will point to a new String("Hello World") 
+   // Object in String pool.The way to fix this is returning the address value held by String reference "input" back to "greeting". 
+   static void stringfy(String input){
+	input += " World";
+   }
+   
+   void main(...args){
+	String greeting = "Hello"; 
+	stringy(greeting);
+	Sysout(greeting); // Output will be Hello
+   }
+
+
+@Question: Basic steps to init a git repo in your local? (Git is a distributed version control-full history of code locally available)
+4. First, initialize a git directory on my local hard disk using "git init"
+   Second, add convenience files such as README.md for commit.
+   Thrid, Do the first commit with the message "-m" flage option. 
+   Third, renaming the default branch "master" ( b4 year 2010) to "main"(as you wish, cuz uon wannna be a racist), such as "git branch -M main".
+
+
+@Question: How to clone a existing git repos from GitHub?
+5. git clone "git@github.com:<name1>/<name2>.git"
+
+
+@Question: How to create a new branch and check out to that branch?
+6. To create: "git branch <new-branch> (optinal args: <base-branch> which create from the base-branch)",  
+   To checkout: "git checkout <Existing-branch>" 
+   To create and stays at that branch at the same time: "git checkout -b <new-branch>"
+
+Note: Checking out a branch updates the files in the working directory to match the version stored in that branch,
+      and it tells Git to record all new commits on that branch.
+
+add->commit->checkout->push"
+
+
+@Question: How to merge the new branch to master branch?
+7. First commit all local movements using "git commit"
+   Then switch back to the master(main) branch using "git checkout master"
+   Finally merge the new branch to master(main) branch using "git merge <new-branch>" 
+
+   To summarize, here are the commands to create a new branch (under master), make some commits, and merge it back into master:
+
+	$ git checkout master
+	$ git branch new-branch
+	$ git checkout new-branch
+
+	# ...develop some code...
+
+	$ git add ¨CA
+	$ git commit ¨Cm "Some commit message"
+	$ git checkout master
+	$ git merge new-branch
+
+Other useful git logic:
+	Add a remote repos(upstream) to local branch: git remote add <remote_name(e.g.origin)> <remote_repo_url> 
+	Push the local repo branch to the remote repos: git push -u <remote_name> <local_branch_name>
+	 
